@@ -21,29 +21,30 @@
     </style>
 </head>
 <body class="bg-gray">
-<div id="app">
+<div id="app" v-cloak>
+    <!--    logo-->
     <div class="flex justify-center">
         <img class="lg:w-1/12 w-2/12 mt-10" src="images/IoTLogo.png" alt="">
     </div>
 
-    <div v-if="trainings.length > 1" class="grid grid-cols-1 justify-items-center gap-10 my-10">
+    <div v-if="trainings.length > 1" class="grid grid-cols-1 justify-items-center gap-10 my-10 cursor-pointer">
         <div v-for="training in trainings"
              @click="getThisTraining(training.id)"
-             class="flex justify-center items-center bg-gray-100 border-2 border-yellow-500 rounded px-4 py-2 lg:w-6/12 w-10/12 lg:text-2xl text-xl">
+             class="flex justify-center items-center bg-gray-100 border-2 border-yellow-500 rounded px-4 py-2 lg:w-6/12 w-11/12 lg:text-2xl text-xl">
             <img class="lg:w-1/12 w-2/12 mr-4" :src="'images/'+ training.icon +'.png'" alt="">
             {{training.name}}
         </div>
     </div>
 
     <div v-if="trainings.length == 1" class="flex flex-wrap justify-center my-10">
-        <div class="flex justify-end lg:w-8/12 w-10/12">
+        <div class="flex justify-end lg:w-8/12 w-11/12">
             <button class="bg-blue-500 text-white font-bold rounded px-4 py-2" @click="goBack()">
                 الرجوع
             </button>
         </div>
 
         <div dir="rtl" v-for="training in trainings"
-             class="bg-white rounded border-2 border-blue-500 p-4 lg:w-8/12 w-10/12 mt-3">
+             class="bg-white rounded border-2 border-blue-500 p-4 lg:w-8/12 w-11/12 mt-3">
             <h1 class="text-center text-3xl font-semibold">
                 {{training.name}}
             </h1>
@@ -95,7 +96,7 @@
                 <h1 class="text-blue-500 ml-2 font-semibold">
                     رابط الاستمارة للتسجيل:
                 </h1>
-                <a :href="training.form_link" target="_blank" class="underline text-blue-700">
+                <a :href="training.form_link" target="_blank" class="underline text-blue-700 flex flex-wrap">
                     {{training.form_link}}
                 </a>
             </div>
