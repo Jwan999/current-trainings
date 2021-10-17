@@ -110,7 +110,7 @@
         },
         methods: {
             getTrainings() {
-                axios.get('http://127.0.0.1:8000/api/current').then(response => {
+                axios.get('https://iotmaker.makershive.org/api/current').then(response => {
                     // console.log(response)
                     this.trainings = response.data
                 })
