@@ -50,7 +50,7 @@
             <p class="text-justify text-gray-700 text-lg mt-6">
                 {{training.description}}
             </p>
-            <div class="flex mt-6 text-lg">
+            <div v-if="training.time" class="flex mt-6 text-lg">
                 <h1 class="text-blue-500 ml-2 font-semibold">
                     الوقت:
                 </h1>
@@ -58,7 +58,7 @@
                     {{training.time}}
                 </h1>
             </div>
-            <div class="flex mt-2 text-lg">
+            <div v-if="training.days" class="flex mt-2 text-lg">
                 <h1 class="text-blue-500 ml-2 font-semibold">
                     الايام:
                 </h1>
@@ -66,12 +66,20 @@
                     {{training.days}}
                 </h1>
             </div>
-            <div class="flex mt-2 text-lg">
+            <div v-if="training.date" class="flex mt-2 text-lg">
                 <h1 class="text-blue-500 ml-2 font-semibold">
                     التاريخ:
                 </h1>
                 <h1 class="text-gray-700">
                     {{training.date}}
+                </h1>
+            </div>
+            <div v-if="training.paid" class="flex mt-2 text-lg">
+                <h1 class="text-blue-500 ml-2 font-semibold">
+                    كلفة التدريب:
+                </h1>
+                <h1 class="text-gray-700">
+                    {{training.paid}}
                 </h1>
             </div>
 
@@ -102,12 +110,13 @@
         },
         methods: {
             getTrainings() {
-                axios.get('https://iotmaker.makershive.org/api/current').then(response => {
+                axios.get('http://127.0.0.1:8000/api/current').then(response => {
                     // console.log(response)
                     this.trainings = response.data
                 })
             },
             getThisTraining(id) {
+                console.log(id)
                 this.trainings = this.trainings.filter(training => training.id == id)
             },
             goBack() {
