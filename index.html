@@ -15,90 +15,118 @@
             font-family: 'Tajawal', sans-serif;
         }
 
+        .avant-garde {
+            font-family: 'Tajawal', sans-serif;
+        }
+
         .bg-gray {
             background-color: #0D0E11;
+        }
+
+        pre {
+            white-space: pre-line;
+            /*white-space: pre-wrap;       !* Since CSS 2.1 *!*/
+            white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+        }
+
+        .orange {
+            background-color: #F39D18;
         }
     </style>
 </head>
 <body class="bg-gray">
 <div id="app" v-cloak>
     <!--    logo-->
-    <div class="flex justify-center">
-        <img class="lg:w-1/12 w-2/12 mt-10" src="images/IoTLogo.png" alt="">
+    <div class="flex justify-center mt-6">
+
+            <img class="lg:w-1/12 w-2/12" src="images/IoTLogo.png" alt="">
+
+
     </div>
 
-    <div v-if="trainings.length > 1" class="grid grid-cols-1 justify-items-center gap-10 my-10 cursor-pointer">
-        <div v-for="training in trainings"
-             @click="getThisTraining(training.id)"
-             class="flex justify-center items-center bg-gray-100 border-2 border-yellow-500 rounded px-4 py-2 lg:w-6/12 w-11/12 lg:text-2xl text-xl">
-            <img class="lg:w-1/12 w-2/12 mr-4" :src="'images/'+ training.icon +'.png'" alt="">
-            {{training.name}}
-        </div>
-    </div>
-
-    <div v-if="trainings.length == 1" class="flex flex-wrap justify-center my-10">
-        <div class="flex justify-end lg:w-8/12 w-11/12">
-            <button class="bg-blue-500 text-white font-bold rounded px-4 py-2" @click="goBack()">
-                الرجوع
-            </button>
-        </div>
-
-        <div dir="rtl" v-for="training in trainings"
-             class="bg-white rounded border-2 border-blue-500 p-4 lg:w-8/12 w-11/12 mt-3">
-            <h1 class="text-center text-3xl font-semibold">
+    <div class="lg:mx-20 mx-4">
+        <div v-if="trainings.length > 1"
+             class="grid lg:grid-cols-3 grid-cols-1 justify-items-center gap-10 my-10 cursor-pointer">
+            <div v-for="training in trainings"
+                 @click="getThisTraining(training.id)"
+                 class="flex w-full justify-center items-center bg-gray-100 border-2 border-yellow-500 rounded px-4 py-2 lg:text-3xl text-xl">
+                <img class="lg:w-2/12 w-2/12 mr-4" :src="'images/'+ training.icon +'.png'" alt="">
                 {{training.name}}
-            </h1>
-            <p class="text-justify text-gray-700 text-lg mt-6">
-                {{training.description}}
-            </p>
-            <div v-if="training.time" class="flex mt-6 text-lg">
-                <h1 class="text-blue-500 ml-2 font-semibold">
-                    الوقت:
-                </h1>
-                <h1 class="text-gray-700">
-                    {{training.time}}
-                </h1>
             </div>
-            <div v-if="training.days" class="flex mt-2 text-lg">
-                <h1 class="text-blue-500 ml-2 font-semibold">
-                    الايام:
-                </h1>
-                <h1 class="text-gray-700">
-                    {{training.days}}
-                </h1>
-            </div>
-            <div v-if="training.lectures" class="flex mt-2 text-lg">
-                <h1 class="text-blue-500 ml-2 font-semibold">
-                    عدد ايام التدريب:
-                </h1>
-                <h1 class="text-gray-700">
-                    {{training.lectures}}
-                </h1>
-            </div>
-            <div v-if="training.date" class="flex mt-2 text-lg">
-                <h1 class="text-blue-500 ml-2 font-semibold">
-                    التاريخ:
-                </h1>
-                <h1 class="text-gray-700">
-                    {{training.date}}
-                </h1>
-            </div>
-            <div v-if="training.paid" class="flex mt-2 text-lg">
-                <h1 class="text-blue-500 ml-2 font-semibold">
-                    كلفة التدريب:
-                </h1>
-                <h1 class="text-gray-700">
-                    {{training.paid}}
-                </h1>
-            </div>
+        </div>
 
-            <div class="flex flex-wrap mt-2 text-lg">
-                <h1 class="text-blue-500 ml-2 font-semibold">
-                    رابط الاستمارة للتسجيل:
-                </h1>
-                <a :href="training.form_link" target="_blank" class="underline text-blue-700">
-                    {{training.form_link}}
-                </a>
+        <div v-if="trainings.length == 1" class="flex flex-wrap  justify-center my-10">
+            <div class="w-full lg:w-5/12">
+                <div class="flex justify-end w-full">
+                    <button class="bg-blue-500 text-white font-bold rounded px-4 py-2" @click="goBack()">
+                        الرجوع
+                    </button>
+                </div>
+
+                <div dir="rtl" v-for="training in trainings"
+                     class="bg-white w-full rounded border-2 border-blue-500 p-4 mt-3">
+                    <h1 class="text-center text-3xl font-semibold">
+                        {{training.name}}
+                    </h1>
+                    <pre class="text-gray-700 text-lg mt-6 avant-garde">
+                {{training.description}}
+            </pre>
+                    <div v-if="training.time" class="flex mt-6 text-lg">
+                        <h1 class="text-blue-500 ml-2 font-semibold">
+                            الوقت:
+                        </h1>
+                        <h1 class="text-gray-700">
+                            {{training.time}}
+                        </h1>
+                    </div>
+                    <div v-if="training.days" class="flex mt-2 text-lg">
+                        <h1 class="text-blue-500 ml-2 font-semibold">
+                            الايام:
+                        </h1>
+                        <h1 class="text-gray-700">
+                            {{training.days}}
+                        </h1>
+                    </div>
+                    <div v-if="training.lectures" class="flex mt-2 text-lg">
+                        <h1 class="text-blue-500 ml-2 font-semibold">
+                            عدد ايام التدريب:
+                        </h1>
+                        <h1 class="text-gray-700">
+                            {{training.lectures}}
+                        </h1>
+                    </div>
+                    <div v-if="training.date" class="flex mt-2 text-lg">
+                        <h1 class="text-blue-500 ml-2 font-semibold">
+                            التاريخ:
+                        </h1>
+                        <h1 class="text-gray-700">
+                            {{training.date}}
+                        </h1>
+                    </div>
+                    <div v-if="training.paid" class="flex mt-2 text-lg">
+                        <h1 class="text-blue-500 ml-2 font-semibold">
+                            كلفة التدريب:
+                        </h1>
+                        <h1 class="text-gray-700">
+                            {{training.paid}}
+                        </h1>
+                    </div>
+
+
+                    <div class="flex flex-wrap justify-end text-lg">
+                        <!--                <h1 class="text-blue-500 ml-2 font-semibold">-->
+                        <!--                    رابط الاستمارة للتسجيل:-->
+                        <!--                </h1>-->
+                        <a :href="training.form_link" target="_blank"
+                           class="text-black lg:w-auto w-full text-center lg:mt-0 mt-4 bg-yellow-400 font-bold text-lg rounded px-4 py-3">
+                            سجل الان
+                        </a>
+                    </div>
+
+
+                </div>
             </div>
 
 
@@ -125,12 +153,16 @@
                 })
             },
             getThisTraining(id) {
-                console.log(id)
                 this.trainings = this.trainings.filter(training => training.id == id)
+                // this.trainings[0].description = this.trainings[0].description.replace('[^"\v]*', ' <br>')
+                console.log(this.trainings[0].description)
+                //
+
             },
             goBack() {
                 location.reload()
-            }
+            },
+
 
         },
         mounted() {
