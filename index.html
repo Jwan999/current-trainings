@@ -66,6 +66,14 @@
                     {{training.days}}
                 </h1>
             </div>
+            <div v-if="training.lectures" class="flex mt-2 text-lg">
+                <h1 class="text-blue-500 ml-2 font-semibold">
+                    عدد ايام التدريب:
+                </h1>
+                <h1 class="text-gray-700">
+                    {{training.lectures}}
+                </h1>
+            </div>
             <div v-if="training.date" class="flex mt-2 text-lg">
                 <h1 class="text-blue-500 ml-2 font-semibold">
                     التاريخ:
