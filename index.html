@@ -200,7 +200,7 @@
         },
         methods: {
             getTrainings() {
-                axios.get('https://iotmaker.makershive.org/api/current').then(response => {
+                axios.get('https://dashboard.makersiq.org/api/current').then(response => {
                     this.trainings = response.data
                 })
             },
